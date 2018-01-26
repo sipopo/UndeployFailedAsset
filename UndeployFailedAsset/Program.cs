@@ -45,18 +45,26 @@ namespace UndeployFailedAsset
                         Console.WriteLine("Undeploy " + assetServerMap.ProviderAssetId);
                         sb.AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ") + "Undeploy " + assetServerMap.ProviderAssetId);
 
-                        VodMan.AddClusterJob(assetServerMap.Title,
-                            assetServerMap.ProviderAssetId,
-                            assetServerMap.ProviderId,
-                            assetServerMap.VServerDiskInformation.VServerInformation.ClusterId,
-                            "",
-                            "",
-                            JobType.Delete,
-                            DateTime.Now.AddMinutes(1),
-                            null
-                            );
-                    }
-                    Thread.Sleep(1000);
+                        try
+                        {
+                            VodMan.AddClusterJob(assetServerMap.Title,
+                                assetServerMap.ProviderAssetId,
+                                assetServerMap.ProviderId,
+                                assetServerMap.VServerDiskInformation.VServerInformation.ClusterId,
+                                "",
+                                "",
+                                JobType.Delete,
+                                DateTime.Now.AddMinutes(1),
+                                null
+                                );
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Error " + e.ToString());
+                            sb.AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ") + "Error " + e.ToString());
+                        }
+                        Thread.Sleep(1000);
+                    }                    
                     if (i > 50) break;
                 }
                
