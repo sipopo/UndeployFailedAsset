@@ -1,0 +1,1 @@
+Делаем undeploy ассетов, полученных методом GetFailedResourceInformation
