@@ -74,7 +74,7 @@ namespace UndeployFailedAsset
                 File.AppendAllText(filePath, sb.ToString());
                 sb.Clear();
                 Console.WriteLine("filepath " + filePath);
-                Console.ReadLine();
+                //Console.ReadLine();
             }
         }
     }
